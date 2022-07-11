@@ -260,10 +260,12 @@ public class FinCoView extends JFrame {
 		    catch( Exception e ) {
 		        zip = "0";
 		    }
-		/*
-			this.viewController.createPerson();
-			Collection<Account> accounts = this.viewController.getAccounts();
-			loadAccountData(accounts, model, JTable1);*/
+
+			ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);
+			this.customerService.create(accountnr, customer);
+			List<IAccount> accounts = this.accountService.findAll();
+			loadAccountData(accounts, model, JTable1);
+
 		}
 	}
 
