@@ -1,16 +1,23 @@
 package com.finco.framework;
 
+import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.observer.Observer;
 import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FincoReceiver implements Subject {
 
-    List<ICustomer> customerList;
-    List<IAccount> accountList;
+    List<ICustomer> customers;
+    List<IAccount> accounts;
+
+    public FincoReceiver(){
+        this.customers = new ArrayList<>();
+        this.accounts = new ArrayList<>();
+    }
 
     public void withdraw(){
         // TODO:
@@ -24,8 +31,13 @@ public class FincoReceiver implements Subject {
         // TODO:
     }
 
-    public void createCompany(){
-        // TODO:
+    public void createCompany(String accountNumber, ICustomer customer){
+        Account account = new Account(accountNumber, 0.0);
+        account.setCustomer(customer);
+        customer.addAccount(account);
+        this.customers.add(customer);
+        this.accounts.add(account);
+
     }
 
     public void createAccount(){
@@ -40,7 +52,14 @@ public class FincoReceiver implements Subject {
         // TODO:
     }
 
-    // MARK:- Subject function
+    public List<ICustomer> getCustomers() {
+        return customers;
+    }
+
+    public List<IAccount> getAccounts() {
+        return accounts;
+    }
+
 
     @Override
     public void addObserver(Observer observer) {
@@ -56,4 +75,6 @@ public class FincoReceiver implements Subject {
     public void notifyObserver() {
         // TODO:
     }
+
+
 }

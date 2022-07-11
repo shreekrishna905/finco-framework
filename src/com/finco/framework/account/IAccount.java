@@ -2,6 +2,7 @@ package com.finco.framework.account;
 
 import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
+import com.finco.framework.party.ICustomer;
 
 public interface IAccount {
     void addEntry(Entry entry);
@@ -12,7 +13,7 @@ public interface IAccount {
 
     String getAccountNumber();
 
-    Customer getCustomer();
+    ICustomer getCustomer();
 
-    String getCurrentBalance();
+    double getCurrentBalance();
 }

@@ -2,9 +2,19 @@ package com.finco.framework.ui;
 
 
 
+import com.finco.framework.FincoReceiver;
+import com.finco.framework.Framework;
 import com.finco.framework.account.Account;
+import com.finco.framework.account.IAccount;
+import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
+import com.finco.framework.party.company.Company;
 import com.finco.framework.party.person.IPerson;
+import com.finco.framework.party.person.Person;
+import com.finco.framework.service.AccountService;
+import com.finco.framework.service.CustomerService;
+import com.finco.framework.service.impl.AccountServiceImpl;
+import com.finco.framework.service.impl.CustomerServiceImpl;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -35,36 +45,19 @@ public class FinCoView extends JFrame {
 	private CustomerService customerService;
 
 	public static void main(String[] args) {
-		new FinCoView(new AccountService() {
-			@Override
-			public Account findByNo(String number) {
-				return new Account();
-			}
-
-			@Override
-			public List<Account> findAll() {
-				return null;
-			}
-
-			@Override
-			public void withdraw(Double amount, String accountNumber) {
-
-			}
-
-			@Override
-			public void addInterest(Double amount) {
-
-			}
-		}, new CustomerService() {
-			@Override
-			public void create(String accountNumber, ICustomer customer) {
-				System.out.println("AM I herer");
-			}
-		}).setVisible(true);
+		FincoOperationManager fincoOperationManager = new FincoOperationManager();
+		FincoReceiver fincoReceiver = new FincoReceiver();
+		Framework framework = new Framework(fincoOperationManager, fincoReceiver);
+		AccountService accountService = new AccountServiceImpl(framework);
+		CustomerService customerService = new CustomerServiceImpl(framework);
+		FinCoView finCoView = new FinCoView(accountService, customerService);
+		finCoView.setVisible(true);
 	}
 
 	public FinCoView(AccountService accountService, CustomerService customerService) {
 		myframe = this;
+		this.accountService = accountService;
+		this.customerService = customerService;
 
 		setTitle("Banking Application");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -208,19 +201,19 @@ public class FinCoView extends JFrame {
 	}
 
 	public List<String> getTableColumnNames(){
-		return List.of("AcctNo.", "Name", "City", "P/C", "CH/S", "Amount");
+		return List.of("AcctNo.", "Name", "City", "P/C",  "Amount");
 	}
 
-	public void loadAccountData(Collection<Account> accounts, DefaultTableModel model, JTable table) {
+	public void loadAccountData(Collection<IAccount> accounts, DefaultTableModel model, JTable table) {
 		model.setRowCount(0);
 
-		for (Account account : accounts) {
+		for (IAccount account : accounts) {
 			Object[] row = new Object[8];
 			row[0] = account.getAccountNumber();
-			row[1] = account.getCustomer().getCity();
+			row[1] = account.getCustomer().getName();
 			row[2] = account.getCustomer().getCity();
 
-			if (account.getCustomer() instanceof IPerson) {
+			if (account.getCustomer() instanceof Person) {
 				row[3] = 'P';
 			} else {
 				row[3] = 'C';
@@ -292,10 +285,10 @@ public class FinCoView extends JFrame {
 		        zip = "0";
 		    }
 
-			/*ICustomer customer = new Company(Integer.parseInt(noOfEmployee),clientName, street, city, state, Integer.parseInt(zip), email);
+			ICustomer customer = new Company(clientName, street, city, state, Integer.parseInt(zip), email, Integer.parseInt(noOfEmployee));
 			this.customerService.create(accountnr, customer);
-			Collection<Account> accounts = this.viewController.getAccounts();
-			loadAccountData(accounts, model, JTable1);*/
+			List<IAccount> accounts = this.accountService.findAll();
+			loadAccountData(accounts, model, JTable1);
 		}
 	}
 

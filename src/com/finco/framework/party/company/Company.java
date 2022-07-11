@@ -1,5 +1,6 @@
 package com.finco.framework.party.company;
 
+import com.finco.framework.account.IAccount;
 import com.finco.framework.party.Customer;
 import com.finco.framework.party.person.IPerson;
 
@@ -9,24 +10,18 @@ import java.util.List;
 
 public class Company extends Customer {
 
-    private List<IPerson> employees;
+    private int  noOfEmployee;
 
-    public Company(String name, String street, String city, String state, int zip, String email) {
+    public Company(String name, String street, String city, String state, int zip, String email, int noOfEmployee) {
         super(name, street, city, state, zip, email);
-        this.employees = new ArrayList<>();
+        this.noOfEmployee = noOfEmployee;
     }
 
-
-    public List<IPerson> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<IPerson> employees) {
-        this.employees = employees;
-    }
 
     @Override
     public void sendEmail(String email) {
         // TODO: send email
     }
+
+
 }

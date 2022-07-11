@@ -80,4 +80,8 @@ public abstract class Customer implements ICustomer {
     public void setAccount(List<IAccount> account) {
         this.account = account;
     }
+
+    public void addAccount(IAccount account){
+        this.account.add(account);
+    }
 }

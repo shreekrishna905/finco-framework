@@ -2,12 +2,24 @@ package com.finco.framework.account;
 
 import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
+import com.finco.framework.party.ICustomer;
 
 public class Account implements IAccount{
 
+    private String accountNumber;
+
+    private double currentBalance;
+
+    private ICustomer customer;
+
+    public Account(String accountNumber, double currentBalance){
+        this.accountNumber = accountNumber;
+        this.currentBalance = currentBalance;
+    }
+
     @Override
     public void addEntry(Entry entry) {
-        // TODO: add Entry
+
     }
 
     @Override
@@ -35,16 +47,23 @@ public class Account implements IAccount{
 
     @Override
     public String getAccountNumber() {
-        return null;
+        return accountNumber;
     }
 
     @Override
-    public Customer getCustomer() {
-        return null;
+    public ICustomer getCustomer() {
+        return customer;
+    }
+
+
+    public void setCustomer(ICustomer customer) {
+        this.customer = customer;
     }
 
     @Override
-    public String getCurrentBalance() {
-        return null;
+    public double getCurrentBalance() {
+        return currentBalance;
     }
+
+
 }
