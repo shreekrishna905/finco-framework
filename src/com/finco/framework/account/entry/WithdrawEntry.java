@@ -7,7 +7,7 @@ import java.util.Date;
 public class WithdrawEntry extends Entry {
 
     public WithdrawEntry(Date date, double amount, String name) {
-        super(date, amount, name);
+        super(date, amount, "WITHDRAW");
     }
 
     @Override

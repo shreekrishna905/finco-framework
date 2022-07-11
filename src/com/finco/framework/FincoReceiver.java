@@ -4,6 +4,7 @@ import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.account.entry.DepositeEntry;
 import com.finco.framework.account.entry.Entry;
+import com.finco.framework.account.entry.WithdrawEntry;
 import com.finco.framework.observer.Observer;
 import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
@@ -24,8 +25,15 @@ public class FincoReceiver implements Subject {
         this.accounts = new ArrayList<>();
     }
 
-    public void withdraw(){
-        // TODO:
+    public void withdraw(Double amount, IAccount account){
+        Date date = new Date();
+        Entry entry = new WithdrawEntry(date, amount, "WITHDRAW");
+        entry.process(account, amount);
+
+        account.addEntry(entry);
+
+        ICustomer customer = account.getCustomer();
+        customer.sendEmail();
     }
 
     public void deposit(Double amount, IAccount account){
