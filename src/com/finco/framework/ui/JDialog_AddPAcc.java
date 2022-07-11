@@ -169,7 +169,7 @@ public class JDialog_AddPAcc extends JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();

@@ -1,19 +1,22 @@
 package com.finco.framework.account;
 
 import com.finco.framework.account.entry.Entry;
-import com.finco.framework.party.Customer;
 import com.finco.framework.party.ICustomer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account implements IAccount{
+public class Account extends IAccount{
     private String accountNumber;
     private double currentBalance;
     private ICustomer customer;
     private List<Entry> entries;
 
+    public Account(String accountNumber){
+        this(accountNumber,0.0);
+    }
     public Account(String accountNumber, double currentBalance){
+        super();
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
         this.entries = new ArrayList<>();

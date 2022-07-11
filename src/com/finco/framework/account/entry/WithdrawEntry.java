@@ -2,16 +2,16 @@ package com.finco.framework.account.entry;
 
 import com.finco.framework.account.IAccount;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class WithdrawEntry extends Entry {
 
-    public WithdrawEntry(Date date, double amount, String name) {
+    public WithdrawEntry(LocalDate date, double amount, String name) {
         super(date, amount, "WITHDRAW");
     }
 
     @Override
-    public void process(IAccount account, double amount) {
-        account.withdraw(amount);
+    public void process(IAccount account) {
+        account.withdraw(getAmount());
     }
 }

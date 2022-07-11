@@ -1,6 +1,8 @@
 package com.finco.framework.service.impl;
 
 import com.finco.framework.Framework;
+import com.finco.framework.account.Account;
+import com.finco.framework.account.IAccount;
 import com.finco.framework.command.CreateAccount;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
@@ -15,9 +17,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void create(String accountNumber, ICustomer customer) {
+    public void create(IAccount account, ICustomer customer) {
         FincoOperationManager operationManager = framework.getFincoOperationManager();
-        operationManager.setCommand(new CreateAccount(framework.getFincoReceiver(),accountNumber,customer));
+        operationManager.setCommand(new CreateAccount(framework.getFincoReceiver(),account,customer));
         operationManager.submit();
     }
 

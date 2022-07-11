@@ -15,6 +15,6 @@ public interface AccountService {
 
     void withdraw(Double amount, IAccount account);
 
-    void addInterest(Double amount);
+    void addInterest();
 
 }

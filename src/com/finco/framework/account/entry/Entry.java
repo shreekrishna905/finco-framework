@@ -2,24 +2,25 @@ package com.finco.framework.account.entry;
 
 import com.finco.framework.account.IAccount;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class Entry {
-    private Date date;
+    private LocalDate date;
     private double amount;
     private String name;
 
-    public Entry(Date date, double amount, String name) {
+    public Entry(LocalDate date, double amount, String name) {
         this.date = date;
         this.amount = amount;
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -39,5 +40,5 @@ public abstract class Entry {
         this.name = name;
     }
 
-    public abstract void process(IAccount account, double amount);
+    public abstract void process(IAccount account);
 }

@@ -32,7 +32,7 @@ public class FinCoView extends JFrame {
 	/****
 	 * init variables in the object
 	 ****/
-	public String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email,
+	public String accountnr, clientName, street, city, zip, state, clientType, amountDeposit, email,
 			birthDate, noOfEmployee;
 	public boolean newaccount;
 	public DefaultTableModel model;
@@ -40,9 +40,9 @@ public class FinCoView extends JFrame {
 	public JScrollPane JScrollPane1;
 	public FinCoView myframe;
 
-	private AccountService accountService;
+	protected AccountService accountService;
 
-	private CustomerService customerService;
+	protected CustomerService customerService;
 
 	public static void main(String[] args) {
 		FincoOperationManager fincoOperationManager = new FincoOperationManager();
@@ -242,13 +242,17 @@ public class FinCoView extends JFrame {
 		System.exit(0);
 	}
 
+	protected JDialog_AddPAcc getAddPersonJDialog() {
+		return new JDialog_AddPAcc(myframe);
+	}
+
 	public void JButtonPerAC_actionPerformed(ActionEvent event) {
 		/*
 		 * JDialog_AddPAcc type object is for adding personal information construct a
 		 * JDialog_AddPAcc type object set the boundaries and show it
 		 */
 
-		JDialog_AddPAcc pac = new JDialog_AddPAcc(myframe);
+		JDialog_AddPAcc pac = getAddPersonJDialog();
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
@@ -261,8 +265,7 @@ public class FinCoView extends JFrame {
 		        zip = "0";
 		    }
 
-			ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);
-			this.customerService.create(accountnr, customer);
+			createPerson();
 			List<IAccount> accounts = this.accountService.findAll();
 			loadAccountData(accounts, model, JTable1);
 
@@ -278,7 +281,7 @@ public class FinCoView extends JFrame {
 
 	public void JButtonCompAC_actionPerformed(ActionEvent event) {
 		/*
-		 * construct a JDialog_AddCompAcc type object set the boundaries and show it
+		 * construct a o type object set the boundaries and show it
 		 */
 		addCompanyJDialog = getAddCompanyJDialog();
 		addCompanyJDialog.setBounds(450, 20, 300, 330);
@@ -292,12 +295,20 @@ public class FinCoView extends JFrame {
 		    catch( Exception e ) {
 		        zip = "0";
 		    }
-
-			ICustomer customer = new Company(clientName, street, city, state, Integer.parseInt(zip), email, Integer.parseInt(noOfEmployee));
-			this.customerService.create(accountnr, customer);
+			createCompany();
 			List<IAccount> accounts = this.accountService.findAll();
 			loadAccountData(accounts, model, JTable1);
 		}
+	}
+
+	protected void createCompany(){
+		ICustomer customer = new Company(clientName, street, city, state, Integer.parseInt(zip), email, Integer.parseInt(noOfEmployee));
+		this.customerService.create(new Account(accountnr), customer);
+	}
+
+	protected void createPerson(){
+		ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);
+		this.customerService.create(new Account(accountnr), customer);
 	}
 
 	public void JButtonDeposit_actionPerformed(ActionEvent event) {
@@ -355,8 +366,8 @@ public class FinCoView extends JFrame {
 	void JButtonAddinterest_actionPerformed(ActionEvent event) {
 		if (JOptionPane.showConfirmDialog(JButton_Addinterest, "Add interest to all accounts",
 				"Add interest to all accounts", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-			/*viewController.addInterest();
-			loadAccountData(viewController.getAccounts(), model, JTable1);*/
+			accountService.addInterest();
+			loadAccountData(accountService.findAll(), model, JTable1);
 		}
 	}
 }

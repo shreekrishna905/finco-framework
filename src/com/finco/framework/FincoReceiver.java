@@ -5,18 +5,13 @@ import com.finco.framework.account.IAccount;
 import com.finco.framework.account.entry.DepositeEntry;
 import com.finco.framework.account.entry.Entry;
 import com.finco.framework.account.entry.WithdrawEntry;
-import com.finco.framework.observer.Observer;
-import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
-import com.finco.framework.party.person.IPerson;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
 
-public class FincoReceiver implements Subject {
+public class FincoReceiver {
 
     List<ICustomer> customers;
     List<IAccount> accounts;
@@ -27,46 +22,34 @@ public class FincoReceiver implements Subject {
     }
 
     public void withdraw(Double amount, IAccount account){
-        Date date = new Date();
-        Entry entry = new WithdrawEntry(date, amount, "WITHDRAW");
-        entry.process(account, amount);
-
+        Entry entry = new WithdrawEntry(LocalDate.now(), amount, "WITHDRAW");
+        entry.process(account);
         account.addEntry(entry);
-
         ICustomer customer = account.getCustomer();
         customer.sendEmail();
     }
 
     public void deposit(Double amount, IAccount account){
-        Date date = new Date();
-        Entry entry = new DepositeEntry(date, amount, "DEPOSIT");
-        entry.process(account, amount);
-
+        Entry entry = new DepositeEntry(LocalDate.now(), amount, "DEPOSIT");
+        entry.process(account);
         account.addEntry(entry);
-
         ICustomer customer = account.getCustomer();
         customer.sendEmail();
     }
 
-    public void createPerson(String accountNumber, ICustomer person){
-        Account account = new Account(accountNumber, 0.0);
-        account.setCustomer(person);
-        person.addAccount(account);
-        this.customers.add(person);
-        this.accounts.add(account);
-    }
 
-    public void createCompany(String accountNumber, ICustomer customer){
-        Account account = new Account(accountNumber, 0.0);
+    public void createAccount(IAccount account, ICustomer customer){
         account.setCustomer(customer);
         customer.addAccount(account);
         this.customers.add(customer);
         this.accounts.add(account);
-
     }
 
-    public void createAccount(){
-        // TODO:
+    public void addInterest(){
+       for (IAccount account: accounts){
+           double interestAmount = account.getCurrentBalance() * account.getInterestRate();
+           deposit(interestAmount,account);
+       }
     }
 
     public void generateReport(){
@@ -85,21 +68,6 @@ public class FincoReceiver implements Subject {
         return accounts;
     }
 
-
-    @Override
-    public void addObserver(Observer observer) {
-        // TODO:
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        // TODO:
-    }
-
-    @Override
-    public void notifyObserver() {
-        // TODO:
-    }
 
 
 }

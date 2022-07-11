@@ -2,6 +2,8 @@ package com.finco.framework.service.impl;
 
 import com.finco.framework.Framework;
 import com.finco.framework.account.IAccount;
+import com.finco.framework.command.AddInterest;
+import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.service.AccountService;
 
 import java.util.List;
@@ -34,7 +36,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void addInterest(Double amount) {
-
+    public void addInterest() {
+        FincoOperationManager operationManager = framework.getFincoOperationManager();
+        operationManager.setCommand(new AddInterest(framework.getFincoReceiver()));
+        operationManager.submit();
     }
 }

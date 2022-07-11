@@ -1,17 +1,16 @@
 package com.finco.bank;
 
-import com.finco.framework.ui.FinCoView;
-import com.finco.framework.ui.JDialog_AddCompAcc;
+import com.finco.framework.ui.JDialog_AddPAcc;
 
 import javax.swing.*;
 
-public class AddAccountView extends JDialog_AddCompAcc {
+public class AddPersonBankView extends JDialog_AddPAcc {
 
     JRadioButton JRadioButton_Chk;
     JRadioButton JRadioButton_Sav;
-    FinCoView parent = null;
+    BankView parent = null;
 
-    public AddAccountView(BankView parent) {
+    public AddPersonBankView(BankView parent) {
         super(parent);
         this.parent = parent;
         addAccountType ();
@@ -23,11 +22,11 @@ public class AddAccountView extends JDialog_AddCompAcc {
         JRadioButton_Chk.setText("Checkings");
         JRadioButton_Chk.setActionCommand("Checkings");
         getContentPane().add(JRadioButton_Chk);
-		JRadioButton_Chk.setBounds(36,12,84,24);
-		JRadioButton_Sav.setText("Savings");
-		JRadioButton_Sav.setActionCommand("Savings");
-		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36,36,84,24);
+        JRadioButton_Chk.setBounds(36,12,84,24);
+        JRadioButton_Sav.setText("Savings");
+        JRadioButton_Sav.setActionCommand("Savings");
+        getContentPane().add(JRadioButton_Sav);
+        JRadioButton_Sav.setBounds(36,36,84,24);
     }
 
     @Override
@@ -39,16 +38,14 @@ public class AddAccountView extends JDialog_AddCompAcc {
         parent.city=JTextField_CT.getText();
         parent.zip=JTextField_ZIP.getText();
         parent.state=JTextField_ST.getText();
-        parent.noOfEmployee = JTextField_NoOfEmp.getText();
-
-       if (JRadioButton_Chk.isSelected())
-           parent.accountType="Ch";
-          else
-              parent.accountType="S";
+        parent.email=JTextField_EM.getText();
+        parent.birthDate=JTextField_BD.getText();
+        if (JRadioButton_Chk.isSelected())
+            parent.accountType="C";
+        else
+            parent.accountType="S";
         parent.newaccount=true;
         dispose();
 
     }
-
-
 }
