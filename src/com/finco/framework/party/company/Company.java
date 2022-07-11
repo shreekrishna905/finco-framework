@@ -19,8 +19,8 @@ public class Company extends Customer {
 
 
     @Override
-    public void sendEmail(String email) {
-        // TODO: send email
+    public void sendEmail() {
+        System.out.println("Email send to -> " + this.getEmail());
     }
 
 

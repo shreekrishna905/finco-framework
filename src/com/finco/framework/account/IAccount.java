@@ -8,8 +8,8 @@ public interface IAccount {
     void addEntry(Entry entry);
     String generateReport();
     String getBalance();
-    void deposite();
-    void withdraw();
+    void deposit(double amount);
+    void withdraw(double amount);
 
     String getAccountNumber();
 

@@ -4,22 +4,24 @@ import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
 import com.finco.framework.party.ICustomer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account implements IAccount{
-
     private String accountNumber;
-
     private double currentBalance;
-
     private ICustomer customer;
+    private List<Entry> entries;
 
     public Account(String accountNumber, double currentBalance){
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
+        this.entries = new ArrayList<>();
     }
 
     @Override
     public void addEntry(Entry entry) {
-
+        entries.add(entry);
     }
 
     @Override
@@ -35,14 +37,13 @@ public class Account implements IAccount{
     }
 
     @Override
-    public void deposite() {
-        // TODO:
-
+    public void deposit(double amount) {
+        currentBalance += amount;
     }
 
     @Override
-    public void withdraw() {
-        // TODO:
+    public void withdraw(double amount) {
+        currentBalance -= amount;
     }
 
     @Override

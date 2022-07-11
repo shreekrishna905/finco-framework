@@ -7,19 +7,21 @@ import java.util.Date;
 
 public class Person extends Customer implements ICustomer {
 
-    private final Date dob;
+    private final String dob;
 
-    public Person(String name, String street, String city, String state, int zip, String email, Date dob) {
+    public Person(String name, String street, String city, String state, int zip, String email, String dob) {
         super(name, street, city, state, zip, email);
         this.dob = dob;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
     @Override
-    public void sendEmail(String email) {
-        // TODO: Send Email via Email Sender.
+    public void sendEmail() {
+        System.out.println("Email send to -> " + this.getEmail());
     }
+
+
 }

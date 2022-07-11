@@ -260,10 +260,12 @@ public class FinCoView extends JFrame {
 		    catch( Exception e ) {
 		        zip = "0";
 		    }
-		/*
-			this.viewController.createPerson();
-			Collection<Account> accounts = this.viewController.getAccounts();
-			loadAccountData(accounts, model, JTable1);*/
+
+			ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);
+			this.customerService.create(accountnr, customer);
+			List<IAccount> accounts = this.accountService.findAll();
+			loadAccountData(accounts, model, JTable1);
+
 		}
 	}
 
@@ -311,11 +313,13 @@ public class FinCoView extends JFrame {
 
 			double deposit = Double.parseDouble(amountDeposit);
 
-			/*Account acc = viewController.getAccounts().stream()
-					.filter(x -> x.getAccountNum().equals(model.getValueAt(selection, 0))).findFirst().get();
+			List<IAccount> accounts = this.accountService.findAll();
 
-			viewController.deposit(acc, deposit);
-			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);*/
+			IAccount acc = accounts.stream()
+					.filter(x -> x.getAccountNumber() .equals(model.getValueAt(selection, 0))).findFirst().get();
+
+			accountService.deposit(deposit, acc);
+			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
 		} else {
 			JOptionPane.showMessageDialog(JButton_Addinterest, "Please first select an account to deposit to.",
 					"Deposit", JOptionPane.WARNING_MESSAGE);
@@ -333,13 +337,15 @@ public class FinCoView extends JFrame {
 			wd.setBounds(430, 15, 275, 140);
 			wd.show();
 
-			/*double withdrawAmount = Double.parseDouble(amountDeposit);
+			double withdrawAmount = Double.parseDouble(amountDeposit);
 
-			Account acc = viewController.getAccounts().stream()
-					.filter(x -> x.getAccountNum().equals(model.getValueAt(selection, 0))).findFirst().get();
+			List<IAccount> accounts = this.accountService.findAll();
 
-			viewController.withdraw(acc, withdrawAmount);
-			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);*/
+			IAccount acc = accounts.stream()
+					.filter(x -> x.getAccountNumber() .equals(model.getValueAt(selection, 0))).findFirst().get();
+
+			accountService.withdraw(withdrawAmount, acc);
+			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
 		} else {
 			JOptionPane.showMessageDialog(JButton_Addinterest, "Please first select an account to withdraw from.",
 					"Withdraw", JOptionPane.WARNING_MESSAGE);
