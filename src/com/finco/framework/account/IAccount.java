@@ -1,6 +1,7 @@
 package com.finco.framework.account;
 
 import com.finco.framework.account.entry.Entry;
+import com.finco.framework.party.Customer;
 
 public interface IAccount {
     void addEntry(Entry entry);
@@ -8,4 +9,10 @@ public interface IAccount {
     String getBalance();
     void deposite();
     void withdraw();
+
+    String getAccountNumber();
+
+    Customer getCustomer();
+
+    String getCurrentBalance();
 }

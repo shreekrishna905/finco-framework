@@ -1,6 +1,7 @@
 package com.finco.framework.account;
 
 import com.finco.framework.account.entry.Entry;
+import com.finco.framework.party.Customer;
 
 public class Account implements IAccount{
 
@@ -30,5 +31,20 @@ public class Account implements IAccount{
     @Override
     public void withdraw() {
         // TODO:
+    }
+
+    @Override
+    public String getAccountNumber() {
+        return null;
+    }
+
+    @Override
+    public Customer getCustomer() {
+        return null;
+    }
+
+    @Override
+    public String getCurrentBalance() {
+        return null;
     }
 }

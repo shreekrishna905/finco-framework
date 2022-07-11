@@ -1,5 +1,10 @@
 package com.finco.framework.party;
 
+import com.finco.framework.account.IAccount;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Customer implements ICustomer {
     private String name;
     private String street;
@@ -8,6 +13,8 @@ public abstract class Customer implements ICustomer {
     private int zip;
     private String email;
 
+    private List<IAccount> account;
+
     protected Customer(String name, String street, String city, String state, int zip, String email) {
         this.name = name;
         this.street = street;
@@ -15,6 +22,7 @@ public abstract class Customer implements ICustomer {
         this.state = state;
         this.zip = zip;
         this.email = email;
+        this.account = new ArrayList<>();
     }
 
     public String getName() {
@@ -63,5 +71,13 @@ public abstract class Customer implements ICustomer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<IAccount> getAccount() {
+        return account;
+    }
+
+    public void setAccount(List<IAccount> account) {
+        this.account = account;
     }
 }
