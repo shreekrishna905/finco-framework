@@ -22,4 +22,6 @@ public class Person extends Customer implements ICustomer {
     public void sendEmail(String email) {
         // TODO: Send Email via Email Sender.
     }
+
+
 }

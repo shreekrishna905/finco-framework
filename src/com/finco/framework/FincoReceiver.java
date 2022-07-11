@@ -5,6 +5,7 @@ import com.finco.framework.account.IAccount;
 import com.finco.framework.observer.Observer;
 import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
+import com.finco.framework.party.person.IPerson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,12 @@ public class FincoReceiver implements Subject {
         // TODO:
     }
 
-    public void createPerson(){
-        // TODO:
+    public void createPerson(String accountNumber, ICustomer person){
+        Account account = new Account(accountNumber, 0.0);
+        account.setCustomer(person);
+        person.addAccount(account);
+        this.customers.add(person);
+        this.accounts.add(account);
     }
 
     public void createCompany(String accountNumber, ICustomer customer){
