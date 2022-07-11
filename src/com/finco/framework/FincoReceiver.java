@@ -2,13 +2,19 @@ package com.finco.framework;
 
 import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
+import com.finco.framework.account.entry.DepositeEntry;
+import com.finco.framework.account.entry.Entry;
+import com.finco.framework.account.entry.WithdrawEntry;
 import com.finco.framework.observer.Observer;
 import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.party.person.IPerson;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FincoReceiver implements Subject {
 
@@ -20,12 +26,26 @@ public class FincoReceiver implements Subject {
         this.accounts = new ArrayList<>();
     }
 
-    public void withdraw(){
-        // TODO:
+    public void withdraw(Double amount, IAccount account){
+        Date date = new Date();
+        Entry entry = new WithdrawEntry(date, amount, "WITHDRAW");
+        entry.process(account, amount);
+
+        account.addEntry(entry);
+
+        ICustomer customer = account.getCustomer();
+        customer.sendEmail();
     }
 
-    public void deposit(){
-        // TODO:
+    public void deposit(Double amount, IAccount account){
+        Date date = new Date();
+        Entry entry = new DepositeEntry(date, amount, "DEPOSIT");
+        entry.process(account, amount);
+
+        account.addEntry(entry);
+
+        ICustomer customer = account.getCustomer();
+        customer.sendEmail();
     }
 
     public void createPerson(String accountNumber, ICustomer person){

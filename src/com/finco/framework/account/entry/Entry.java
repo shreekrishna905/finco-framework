@@ -1,5 +1,7 @@
 package com.finco.framework.account.entry;
 
+import com.finco.framework.account.IAccount;
+
 import java.util.Date;
 
 public abstract class Entry {
@@ -37,5 +39,5 @@ public abstract class Entry {
         this.name = name;
     }
 
-    abstract void process();
+    public abstract void process(IAccount account, double amount);
 }

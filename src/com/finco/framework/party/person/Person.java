@@ -19,8 +19,8 @@ public class Person extends Customer implements ICustomer {
     }
 
     @Override
-    public void sendEmail(String email) {
-        // TODO: Send Email via Email Sender.
+    public void sendEmail() {
+        System.out.println("Email send to -> " + this.getEmail());
     }
 
 
