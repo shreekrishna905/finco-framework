@@ -6,7 +6,7 @@ import com.finco.framework.account.IAccount;
 import java.util.List;
 
 public interface ICustomer {
-    void sendEmail(String email);
+    void sendEmail();
     void addAccount(IAccount account);
     String getName();
     String getStreet();

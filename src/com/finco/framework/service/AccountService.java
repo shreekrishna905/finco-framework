@@ -11,7 +11,9 @@ public interface AccountService {
 
     List<IAccount> findAll();
 
-    void withdraw(Double amount, String accountNumber);
+    void deposit(Double amount, IAccount account);
+
+    void withdraw(Double amount, IAccount account);
 
     void addInterest(Double amount);
 

@@ -1,5 +1,7 @@
 package com.finco.framework.account.entry;
 
+import com.finco.framework.account.IAccount;
+
 import java.util.Date;
 
 public class WithdrawEntry extends Entry {
@@ -9,7 +11,7 @@ public class WithdrawEntry extends Entry {
     }
 
     @Override
-    void process() {
-        // TODO: Process the entry
+    public void process(IAccount account, double amount) {
+        account.withdraw(amount);
     }
 }
