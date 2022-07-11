@@ -307,11 +307,13 @@ public class FinCoView extends JFrame {
 
 			double deposit = Double.parseDouble(amountDeposit);
 
-			/*Account acc = viewController.getAccounts().stream()
-					.filter(x -> x.getAccountNum().equals(model.getValueAt(selection, 0))).findFirst().get();
+			List<IAccount> accounts = this.accountService.findAll();
 
-			viewController.deposit(acc, deposit);
-			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);*/
+			IAccount acc = accounts.stream()
+					.filter(x -> x.getAccountNumber() .equals(model.getValueAt(selection, 0))).findFirst().get();
+
+			accountService.deposit(deposit, acc);
+			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
 		} else {
 			JOptionPane.showMessageDialog(JButton_Addinterest, "Please first select an account to deposit to.",
 					"Deposit", JOptionPane.WARNING_MESSAGE);

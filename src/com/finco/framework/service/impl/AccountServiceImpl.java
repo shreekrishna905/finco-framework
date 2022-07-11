@@ -24,8 +24,12 @@ public class AccountServiceImpl implements AccountService {
         return framework.getFincoReceiver().getAccounts();
     }
 
+    public void deposit(Double amount, IAccount account){
+        framework.getFincoReceiver().deposit(amount, account);
+    }
+
     @Override
-    public void withdraw(Double amount, String accountNumber) {
+    public void withdraw(Double amount, IAccount account) {
 
     }
 
