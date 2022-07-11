@@ -267,14 +267,20 @@ public class FinCoView extends JFrame {
 		}
 	}
 
+
+	private JDialog_AddCompAcc addCompanyJDialog;
+
+	protected JDialog_AddCompAcc getAddCompanyJDialog() {
+		return new JDialog_AddCompAcc(myframe);
+	}
+
 	public void JButtonCompAC_actionPerformed(ActionEvent event) {
 		/*
 		 * construct a JDialog_AddCompAcc type object set the boundaries and show it
 		 */
-
-		JDialog_AddCompAcc pac = new JDialog_AddCompAcc(myframe);
-		pac.setBounds(450, 20, 300, 330);
-		pac.show();
+		addCompanyJDialog = getAddCompanyJDialog();
+		addCompanyJDialog.setBounds(450, 20, 300, 330);
+		addCompanyJDialog.show();
 
 		if (newaccount) {
 			// add row to table

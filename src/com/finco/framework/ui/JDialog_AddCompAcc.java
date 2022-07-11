@@ -24,14 +24,9 @@ public class JDialog_AddCompAcc extends JDialog
 		getContentPane().setLayout(null);
 		setSize(298,339);
 		setVisible(false);
-//		JRadioButton_Chk.setText("Checkings");
-//		JRadioButton_Chk.setActionCommand("Checkings");
-//		getContentPane().add(JRadioButton_Chk);
-//		JRadioButton_Chk.setBounds(36,12,84,24);
-//		JRadioButton_Sav.setText("Savings");
-//		JRadioButton_Sav.setActionCommand("Savings");
-//		getContentPane().add(JRadioButton_Sav);
-//		JRadioButton_Sav.setBounds(36,36,84,24);
+
+		addAccountType();
+
 		JLabel1.setText("Name");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(Color.black);
@@ -97,10 +92,10 @@ public class JDialog_AddCompAcc extends JDialog
 		//}}
 	}
 
+	protected void addAccountType(){}
+
 
 	//{{DECLARE_CONTROLS
-	JRadioButton JRadioButton_Chk = new JRadioButton();
-	JRadioButton JRadioButton_Sav = new JRadioButton();
 	JLabel JLabel1 = new JLabel();
 	JLabel JLabel2 = new JLabel();
 	JLabel JLabel3 = new JLabel();
@@ -108,17 +103,17 @@ public class JDialog_AddCompAcc extends JDialog
 	JLabel JLabel5 = new JLabel();
 	JLabel JLabel6 = new JLabel();
 	JLabel JLabel7 = new JLabel();
-	JTextField JTextField_NAME = new JTextField();
-	JTextField JTextField_CT = new JTextField();
-	JTextField JTextField_ST = new JTextField();
-	JTextField JTextField_STR = new JTextField();
-	JTextField JTextField_ZIP = new JTextField();
-	JTextField JTextField_NoOfEmp = new JTextField();
-	JTextField JTextField_EM = new JTextField();
+	protected JTextField JTextField_NAME = new JTextField();
+	protected JTextField JTextField_CT = new JTextField();
+	protected JTextField JTextField_ST = new JTextField();
+	protected JTextField JTextField_STR = new JTextField();
+	protected JTextField JTextField_ZIP = new JTextField();
+	protected JTextField JTextField_NoOfEmp = new JTextField();
+	protected JTextField JTextField_EM = new JTextField();
 	JButton JButton_OK = new JButton();
 	JButton JButton_Calcel = new JButton();
 	JLabel JLabel8 = new JLabel();
-	JTextField JTextField_ACNR = new JTextField();
+	protected JTextField JTextField_ACNR = new JTextField();
 	//}}
 
 
@@ -134,7 +129,7 @@ public class JDialog_AddCompAcc extends JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
