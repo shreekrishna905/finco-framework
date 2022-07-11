@@ -30,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void withdraw(Double amount, IAccount account) {
-
+        framework.getFincoReceiver().withdraw(amount,account);
     }
 
     @Override
