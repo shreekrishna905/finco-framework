@@ -33,6 +33,10 @@ public class Account implements IAccount{
         return null;
     }
 
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
     @Override
     public String getBalance() {
         // TODO:

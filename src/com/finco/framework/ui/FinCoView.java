@@ -2,6 +2,7 @@ package com.finco.framework.ui;
 
 
 
+import com.finco.framework.observer.Observer;
 import com.finco.framework.FincoReceiver;
 import com.finco.framework.Framework;
 import com.finco.framework.account.Account;
@@ -9,7 +10,6 @@ import com.finco.framework.account.IAccount;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.party.company.Company;
-import com.finco.framework.party.person.IPerson;
 import com.finco.framework.party.person.Person;
 import com.finco.framework.service.AccountService;
 import com.finco.framework.service.CustomerService;
@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * A basic JFC based application.
  **/
-public class FinCoView extends JFrame {
+public class FinCoView extends JFrame implements Observer {
 	/****
 	 * init variables in the object
 	 ****/
@@ -104,8 +104,12 @@ public class FinCoView extends JFrame {
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		JButton_Addinterest.addActionListener(lSymAction);
-		JButton_GenerateReport.addActionListener(lSymAction);
+        addButtonsActionListener(lSymAction);
 	}
+
+    protected void addButtonsActionListener(SymAction lSymAction){
+
+    }
 
 	public JPanel JPanel1 = new JPanel();
 	public JButton JButton_PerAC = new JButton();
@@ -113,7 +117,8 @@ public class FinCoView extends JFrame {
 	public JButton JButton_Deposit = new JButton();
 	public JButton JButton_Withdraw = new JButton();
 	public JButton JButton_Addinterest = new JButton();
-	public JButton JButton_GenerateReport = new JButton();
+	public JButton JButton_Top10Deposit = new JButton();
+	public JButton JButton_Top10Withdraw = new JButton();
 	public JButton JButton_Exit = new JButton();
 
 
@@ -140,14 +145,14 @@ public class FinCoView extends JFrame {
 		JPanel1.add(JButton_Withdraw);
 		JButton_Withdraw.setBounds(468, 140, 96, 33);
 
-		JButton_GenerateReport.setText("Generate Report");
-		JPanel1.add(JButton_GenerateReport);
-		JButton_GenerateReport.setBounds(468, 190, 116, 33);
+		addButtons();
 
-		JButton_Exit.setText("Exit");
-		JPanel1.add(JButton_Exit);
-		JButton_Exit.setBounds(468, 248, 96, 30);
+
 	}
+
+    protected void addButtons(){
+
+    }
 
 	void exitApplication() {
 		try {
@@ -156,6 +161,11 @@ public class FinCoView extends JFrame {
 			System.exit(0); // close the application
 		} catch (Exception e) {
 		}
+	}
+
+	@Override
+	public void update(String data, String type) {
+
 	}
 
 	class SymWindow extends java.awt.event.WindowAdapter {
@@ -179,7 +189,7 @@ public class FinCoView extends JFrame {
 		}
 	}
 
-	class SymAction implements java.awt.event.ActionListener {
+	protected class SymAction implements java.awt.event.ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			Object object = event.getSource();
 			if (object == JButton_Exit)
@@ -194,11 +204,12 @@ public class FinCoView extends JFrame {
 				JButtonWithdraw_actionPerformed(event);
 			else if (object == JButton_Addinterest)
 				JButtonAddinterest_actionPerformed(event);
-			else if (object == JButton_GenerateReport)
-				JButtonGenerateReport_actionPerformed(event);
+			actionPerformedButtons(event);
 
 		}
 	}
+
+    protected void actionPerformedButtons(ActionEvent event){}
 
 	public List<String> getTableColumnNames(){
 		return List.of("AcctNo.", "Name", "City", "P/C",  "Amount");
@@ -358,8 +369,7 @@ public class FinCoView extends JFrame {
 			accountService.withdraw(withdrawAmount, acc);
 			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
 		} else {
-			JOptionPane.showMessageDialog(JButton_Addinterest, "Please first select an account to withdraw from.",
-					"Withdraw", JOptionPane.WARNING_MESSAGE);
+
 		}
 	}
 

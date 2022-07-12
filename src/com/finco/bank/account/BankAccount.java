@@ -1,10 +1,10 @@
-package com.finco.bank;
+package com.finco.bank.account;
 
 import com.finco.framework.account.Account;
 
 public class BankAccount extends Account {
 
-    private double interestRate;
+    private final double interestRate;
 
     public BankAccount(String accountNumber, double interestRate) {
         super(accountNumber);

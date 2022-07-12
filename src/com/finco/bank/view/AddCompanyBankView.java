@@ -1,4 +1,4 @@
-package com.finco.bank;
+package com.finco.bank.view;
 
 import com.finco.framework.ui.JDialog_AddCompAcc;
 

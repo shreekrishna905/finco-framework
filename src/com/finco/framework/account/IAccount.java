@@ -4,6 +4,8 @@ import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
 import com.finco.framework.party.ICustomer;
 
+import java.util.List;
+
 public interface IAccount {
 
 
@@ -15,6 +17,9 @@ public interface IAccount {
 
      String getAccountNumber();
      ICustomer getCustomer();
+
+     List<Entry> getEntries();
+
      default String getAccountType(){return "";}
 
     default double getInterestRate(){ return 0.0; };

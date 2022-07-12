@@ -17,4 +17,7 @@ public interface AccountService {
 
     void addInterest();
 
+    void top10DepositReport(String accoutNumber);
+    void top10WithdrawReport(String accoutNumber);
+
 }

@@ -1,4 +1,6 @@
-package com.finco.bank;
+package com.finco.bank.account;
+
+import com.finco.bank.account.BankAccount;
 
 public class SavingAccount extends BankAccount {
     public SavingAccount(String accountNumber) {

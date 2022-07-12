@@ -4,6 +4,7 @@ import com.finco.framework.Framework;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.AddInterest;
 import com.finco.framework.command.FincoOperationManager;
+import com.finco.framework.command.GenerateReport;
 import com.finco.framework.service.AccountService;
 
 import java.util.List;
@@ -41,4 +42,19 @@ public class AccountServiceImpl implements AccountService {
         operationManager.setCommand(new AddInterest(framework.getFincoReceiver()));
         operationManager.submit();
     }
+
+    @Override
+    public void top10DepositReport(String accountNumber) {
+        FincoOperationManager operationManager = framework.getFincoOperationManager();
+        operationManager.setCommand(new GenerateReport(framework.getFincoReceiver(), accountNumber, "TOP_10_DEPOSIT"));
+        operationManager.submit();
+    }
+
+    @Override
+    public void top10WithdrawReport(String accountNumber) {
+        FincoOperationManager operationManager = framework.getFincoOperationManager();
+        operationManager.setCommand(new GenerateReport(framework.getFincoReceiver(), accountNumber, "TOP_10_WITHDRAW"));
+        operationManager.submit();
+    }
+
 }

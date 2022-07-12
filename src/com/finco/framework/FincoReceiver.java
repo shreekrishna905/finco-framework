@@ -1,24 +1,30 @@
 package com.finco.framework;
 
+import com.finco.framework.observer.Observer;
+import com.finco.framework.observer.Subject;
 import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.account.entry.DepositeEntry;
 import com.finco.framework.account.entry.Entry;
 import com.finco.framework.account.entry.WithdrawEntry;
 import com.finco.framework.party.ICustomer;
+import com.finco.framework.report.FincoReport;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FincoReceiver {
+public class FincoReceiver implements Subject {
 
     List<ICustomer> customers;
     List<IAccount> accounts;
+    List<Observer> observers;
+    private FincoReport fincoReport;
 
     public FincoReceiver(){
         this.customers = new ArrayList<>();
         this.accounts = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public void withdraw(Double amount, IAccount account){
@@ -52,12 +58,13 @@ public class FincoReceiver {
        }
     }
 
-    public void generateReport(){
-        // TODO:
+    public void generateReport(String type){
+        String report = fincoReport.generate();
+        notifyObserver(report,type);
     }
 
-    public void setReport(){
-        // TODO:
+    public void setReport(FincoReport fincoReport){
+        this.fincoReport = fincoReport;
     }
 
     public List<ICustomer> getCustomers() {
@@ -68,6 +75,17 @@ public class FincoReceiver {
         return accounts;
     }
 
+    public IAccount getAccount(String accountNumber){
+        for (IAccount account: accounts){
+            if (account.getAccountNumber().equals(accountNumber)){
+                return account;
+            }
+        }
+        return null;
+    }
 
-
+    @Override
+    public List<Observer> getObserver() {
+        return observers;
+    }
 }
