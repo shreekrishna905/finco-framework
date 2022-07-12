@@ -1,6 +1,7 @@
 package com.finco.framework.party;
 
 import com.finco.framework.account.IAccount;
+import com.finco.framework.utils.EmailSender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,5 +84,9 @@ public abstract class Customer implements ICustomer {
 
     public void addAccount(IAccount account){
         this.account.add(account);
+    }
+
+    public void sendEmail() {
+        EmailSender.getInstance().sendEmail(this.getEmail());
     }
 }

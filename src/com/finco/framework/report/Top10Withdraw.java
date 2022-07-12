@@ -15,7 +15,7 @@ public class Top10Withdraw implements FincoReport{
         String withdraw = "";
         for (Entry entry: account.getEntries()){
             if(entry.getName().equals("WITHDRAW")){
-                withdraw+=entry.getAmount()+",";
+                withdraw+="Date:"+ entry.getDate()+" Amount:"+entry.getAmount()+"\n";
             }
         }
         return withdraw;

@@ -1,6 +1,7 @@
 package com.finco.bank.view;
 
 import com.finco.bank.BankReceiver;
+import com.finco.bank.factory.BankAccountFactory;
 import com.finco.framework.FincoReceiver;
 import com.finco.framework.Framework;
 import com.finco.framework.account.Account;
@@ -54,14 +55,15 @@ public class BankView extends FinCoView {
     @Override
     protected void createCompany(){
         ICustomer customer = new Company(clientName, street, city, state, Integer.parseInt(zip), email, Integer.parseInt(noOfEmployee));
-        AccountFactory bankAccountFactory = AccountFactory.getFactory("bank");
+        AccountFactory bankAccountFactory = new BankAccountFactory();
         Account account = bankAccountFactory.createAccount(accountType, accountnr);
         this.customerService.create(account, customer);
     }
 
     @Override
     protected void createPerson(){
-        ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);        AccountFactory bankAccountFactory = AccountFactory.getFactory("bank");
+        ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);
+        AccountFactory bankAccountFactory = new BankAccountFactory();
         Account account = bankAccountFactory.createAccount(accountType, accountnr);
         this.customerService.create(account, customer);
     }

@@ -16,7 +16,7 @@ public class Top10Deposit implements FincoReport{
         String deposit = "";
         for (Entry entry: account.getEntries()){
             if(entry.getName().equals("DEPOSIT")){
-                deposit+=entry.getAmount()+",";
+                deposit+="Date:"+ entry.getDate()+" Amount:"+entry.getAmount()+"\n";
             }
         }
         return deposit;

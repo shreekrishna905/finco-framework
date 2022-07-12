@@ -3,7 +3,6 @@ package com.finco.framework.service.impl;
 import com.finco.framework.Framework;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.*;
-import com.finco.framework.report.FincoReport;
 import com.finco.framework.report.Top10Deposit;
 import com.finco.framework.report.Top10Withdraw;
 import com.finco.framework.service.AccountService;
@@ -52,7 +51,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void top10WithdrawReport(String accountNumber) {
         IAccount account = framework.getFincoReceiver().getAccount(accountNumber);
-        framework.getFincoReceiver().setReport(new Top10Deposit(account));
+        framework.getFincoReceiver().setReport(new Top10Withdraw(account));
         submitCommand(new GenerateReport(framework.getFincoReceiver(), accountNumber, "TOP_10_WITHDRAW"));
     }
 

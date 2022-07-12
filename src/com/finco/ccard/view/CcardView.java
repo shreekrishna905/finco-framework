@@ -10,9 +10,7 @@ import com.finco.framework.account.IAccount;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.party.person.Person;
-import com.finco.framework.service.AccountService;
 import com.finco.framework.service.CustomerService;
-import com.finco.framework.service.impl.AccountServiceImpl;
 import com.finco.framework.service.impl.CustomerServiceImpl;
 import com.finco.framework.ui.*;
 
@@ -31,6 +29,7 @@ public class CcardView extends FinCoView {
         super(accountService, customerService);
         this.creditCardAccountService = accountService;
         setSize(650, 400);
+        setTitle("Credit Card Application");
         JButton_Withdraw.setText("Charge");
         JButton_Deposit.setText("Pay");
     }
@@ -167,9 +166,6 @@ public class CcardView extends FinCoView {
             billFrm.show();
         }
     }
-
-
-
 
     protected void addButtonsActionListener(SymAction symAction){
         JButton_Top10Deposit.addActionListener(symAction);
