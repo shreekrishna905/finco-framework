@@ -72,7 +72,6 @@ public class CcardView extends FinCoView {
         JButton_Top10Deposit.setText("Top 10 Deposit");
         JPanel1.add(JButton_Top10Deposit);
         JButton_Top10Deposit.setBounds(468, 190, 150, 33);
-
         JButton_Top10Withdraw.setText("Top 10 Withdraw");
         JPanel1.add(JButton_Top10Withdraw);
         JButton_Top10Withdraw.setBounds(468, 240, 150, 33);
