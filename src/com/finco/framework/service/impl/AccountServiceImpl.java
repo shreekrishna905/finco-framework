@@ -54,5 +54,4 @@ public class AccountServiceImpl implements AccountService {
         operationManager.setCommand(command);
         operationManager.submit();
     }
-
 }
