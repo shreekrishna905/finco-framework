@@ -61,6 +61,8 @@ public class JDialog_AddPAcc extends JDialog
 		getContentPane().add(JLabel7);
 		JLabel7.setForeground(Color.black);
 		JLabel7.setBounds(12,228,48,24);
+
+
 		getContentPane().add(JTextField_NAME);
 		JTextField_NAME.setBounds(84,84,156,20);
 		getContentPane().add(JTextField_CT);
@@ -83,12 +85,7 @@ public class JDialog_AddPAcc extends JDialog
 		JButton_Cancel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Cancel);
 		JButton_Cancel.setBounds(156,264,84,24);
-		getContentPane().add(JTextField_ACNR);
-		JTextField_ACNR.setBounds(84,60,156,20);
-		JLabel8.setText("Acc Nr");
-		getContentPane().add(JLabel8);
-		JLabel8.setForeground(Color.black);
-		JLabel8.setBounds(12,60,48,24);
+		accountNumber();
 		//}}
 	
 		//{{REGISTER_LISTENERS
@@ -99,6 +96,15 @@ public class JDialog_AddPAcc extends JDialog
 		JButton_OK.addActionListener(lSymAction);
 		JButton_Cancel.addActionListener(lSymAction);
 		//}}
+	}
+
+	protected void accountNumber(){
+		getContentPane().add(JTextField_ACNR);
+		JTextField_ACNR.setBounds(84,60,156,20);
+		JLabel8.setText("Acc Nr");
+		getContentPane().add(JLabel8);
+		JLabel8.setForeground(Color.black);
+		JLabel8.setBounds(12,60,48,24);
 	}
 
 

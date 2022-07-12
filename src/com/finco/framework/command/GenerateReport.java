@@ -21,8 +21,6 @@ public class GenerateReport implements Command{
 
     @Override
     public void execute() {
-        IAccount account = fincoReceiver.getAccount(accountNumber);
-        fincoReceiver.setReport(FincoReport.getReportType(type, account));
         fincoReceiver.generateReport(type);
     }
 }

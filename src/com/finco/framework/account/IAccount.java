@@ -4,6 +4,7 @@ import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
 import com.finco.framework.party.ICustomer;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IAccount {
@@ -23,6 +24,11 @@ public interface IAccount {
      default String getAccountType(){return "";}
 
     default double getInterestRate(){ return 0.0; };
+
+     default LocalDate getExpDate(){return null;}
+
+
+
 
     double getCurrentBalance();
 

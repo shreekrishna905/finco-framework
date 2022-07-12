@@ -41,4 +41,8 @@ public abstract class Entry {
     }
 
     public abstract void process(IAccount account);
+
+    public String toString(){
+        return "Date: "+date+" Name:"+name+" amount:"+ amount;
+    }
 }

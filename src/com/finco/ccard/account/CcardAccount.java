@@ -2,26 +2,47 @@ package com.finco.ccard.account;
 
 import com.finco.framework.account.Account;
 
+import java.time.LocalDate;
+
 public class CcardAccount extends Account {
 
-    private String creditCardNumber;
-    private String expDate;
+    private LocalDate expDate;
     private String ccv;
     private double creditLimit;
-    private CcardType type;
-    private double monthlyInterest;
-    private double minimumPayment;
     private double creditUse;
+    private CcardType type;
 
-    public CcardAccount(String accountNumber, String creditCardNumber, String expDate, String ccv, double creditLimit, CcardType type, double monthlyInterest, double minimumPayment, double creditUse) {
-        super(accountNumber);
-        this.creditCardNumber = creditCardNumber;
+    public CcardAccount(String creditCardNumber, LocalDate expDate, CcardType ccardType){
+        super(creditCardNumber);
         this.expDate = expDate;
-        this.ccv = ccv;
-        this.creditLimit = creditLimit;
+        this.type = ccardType;
+    }
+
+    public LocalDate getExpDate() {
+        return expDate;
+    }
+
+    public String getCcv() {
+        return ccv;
+    }
+
+    public double getCreditLimit() {
+        return creditLimit;
+    }
+
+    public CcardType getType() {
+        return type;
+    }
+
+    public void setType(CcardType type) {
         this.type = type;
-        this.monthlyInterest = monthlyInterest;
-        this.minimumPayment = minimumPayment;
-        this.creditUse = creditUse;
+    }
+
+    public double getCreditUse() {
+        return creditUse;
+    }
+
+    public double getInterestRate(){
+        return type.getMonthlyInterest();
     }
 }

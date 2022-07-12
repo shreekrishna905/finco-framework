@@ -4,11 +4,15 @@ public class Silver implements CcardType{
     
     @Override
     public double getMinimumPayment(){
-        return 0.16;
+        return 16.0/100.0;
     }
 
     @Override
     public double getMonthlyInterest() {
-        return 0.18;
+        return 18.0/100.0;
+    }
+
+    public String toString(){
+        return "S";
     }
 }

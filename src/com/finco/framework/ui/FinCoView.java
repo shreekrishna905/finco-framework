@@ -238,7 +238,7 @@ public class FinCoView extends JFrame implements Observer {
 		table.getSelectionModel().setAnchorSelectionIndex(-1);
 		newaccount = false;
 	}
-	
+
 	public void JButtonGenerateReport_actionPerformed(ActionEvent event) {
 
 		JDialogGenReport billFrm = new JDialogGenReport(this, "", "Report Details");
@@ -374,8 +374,8 @@ public class FinCoView extends JFrame implements Observer {
 	}
 
 	void JButtonAddinterest_actionPerformed(ActionEvent event) {
-		if (JOptionPane.showConfirmDialog(JButton_Addinterest, "Add interest to all accounts",
-				"Add interest to all accounts", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+		if (JOptionPane.showConfirmDialog(JButton_Addinterest, "Add interest to accounts",
+				"Add interest", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
 			accountService.addInterest();
 			loadAccountData(accountService.findAll(), model, JTable1);
 		}

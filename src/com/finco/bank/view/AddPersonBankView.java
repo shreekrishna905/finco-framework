@@ -13,6 +13,7 @@ public class AddPersonBankView extends JDialog_AddPAcc {
     public AddPersonBankView(BankView parent) {
         super(parent);
         this.parent = parent;
+        setSize(650, 400);
         addAccountType ();
     }
 
