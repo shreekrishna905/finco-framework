@@ -7,13 +7,13 @@ import com.finco.framework.party.ICustomer;
 
 public class CreateAccount implements Command {
 
-    private IAccount account;
+    private Account account;
 
     private ICustomer customer;
 
     private FincoReceiver fincoReceiver;
 
-    public CreateAccount(FincoReceiver fincoReceiver, IAccount account, ICustomer iCustomer){
+    public CreateAccount(FincoReceiver fincoReceiver, Account account, ICustomer iCustomer){
         this.fincoReceiver = fincoReceiver;
         this.account = account;
         this.customer = iCustomer;

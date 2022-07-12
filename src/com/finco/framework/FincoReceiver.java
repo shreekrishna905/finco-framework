@@ -38,7 +38,7 @@ public class FincoReceiver {
     }
 
 
-    public void createAccount(IAccount account, ICustomer customer){
+    public void createAccount(Account account, ICustomer customer){
         account.setCustomer(customer);
         customer.addAccount(account);
         this.customers.add(customer);

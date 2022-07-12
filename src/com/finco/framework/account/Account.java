@@ -6,7 +6,7 @@ import com.finco.framework.party.ICustomer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account extends IAccount{
+public class Account implements IAccount{
     private String accountNumber;
     private double currentBalance;
     private ICustomer customer;
@@ -54,7 +54,7 @@ public class Account extends IAccount{
         return accountNumber;
     }
 
-    @Override
+
     public ICustomer getCustomer() {
         return customer;
     }

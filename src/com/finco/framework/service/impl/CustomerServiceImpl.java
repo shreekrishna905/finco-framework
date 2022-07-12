@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void create(IAccount account, ICustomer customer) {
+    public void create(Account account, ICustomer customer) {
         FincoOperationManager operationManager = framework.getFincoOperationManager();
         operationManager.setCommand(new CreateAccount(framework.getFincoReceiver(),account,customer));
         operationManager.submit();

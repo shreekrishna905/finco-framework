@@ -4,30 +4,21 @@ import com.finco.framework.account.entry.Entry;
 import com.finco.framework.party.Customer;
 import com.finco.framework.party.ICustomer;
 
-public abstract class IAccount {
+public interface IAccount {
 
-    protected ICustomer customer;
 
-    public IAccount(ICustomer customer){
-        this.customer = customer;
-    }
-    protected abstract void addEntry(Entry entry);
-    public abstract String generateReport();
-    public abstract String getBalance();
-    public abstract void deposit(double amount);
-    public abstract void withdraw(double amount);
+    void addEntry(Entry entry);
+     String generateReport();
+     String getBalance();
+     void deposit(double amount);
+     void withdraw(double amount);
 
-    public abstract String getAccountNumber();
+     String getAccountNumber();
+     ICustomer getCustomer();
+     default String getAccountType(){return "";}
 
-    public String getAccountType(){return "";}
+    default double getInterestRate(){ return 0.0; };
 
-    public double getInterestRate(){ return 0.0; };
+    double getCurrentBalance();
 
-    protected ICustomer getCustomer(){ return customer;}
-
-    public abstract double getCurrentBalance();
-
-    protected void setCustomer(ICustomer customer) {
-        this.customer = customer;
-    }
 }

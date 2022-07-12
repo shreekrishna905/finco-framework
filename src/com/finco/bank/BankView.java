@@ -56,7 +56,7 @@ public class BankView extends FinCoView {
     @Override
     protected void createPerson(){
         ICustomer customer = new Person(clientName, street, city, state, Integer.parseInt(zip), email,birthDate);        AccountFactory bankAccountFactory = AccountFactory.getFactory("bank");
-        IAccount account = bankAccountFactory.createAccount(accountType, accountnr);
+        Account account = bankAccountFactory.createAccount(accountType, accountnr);
         this.customerService.create(account, customer);
     }
 }
