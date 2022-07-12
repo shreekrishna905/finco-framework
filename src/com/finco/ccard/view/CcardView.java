@@ -5,7 +5,6 @@ import com.finco.ccard.account.CcardAccount;
 import com.finco.ccard.account.CcardType;
 import com.finco.ccard.account.CreditCardAccountService;
 import com.finco.framework.FincoReceiver;
-import com.finco.framework.Framework;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
@@ -80,9 +79,8 @@ public class CcardView extends FinCoView {
     public static void main(String[] args) {
         FincoOperationManager fincoOperationManager = new FincoOperationManager();
         FincoReceiver fincoReceiver = new BankReceiver();
-        Framework framework = new Framework(fincoOperationManager, fincoReceiver);
-        CreditCardAccountService accountService = new CreditCardAccountService(framework);
-        CustomerService customerService = new CustomerServiceImpl(framework);
+        CreditCardAccountService accountService = new CreditCardAccountService(fincoOperationManager,fincoReceiver);
+        CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
         FinCoView finCoView = new CcardView(accountService, customerService);
         fincoReceiver.addObserver(finCoView);
         finCoView.setVisible(true);

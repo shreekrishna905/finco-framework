@@ -3,7 +3,6 @@ package com.finco.bank.view;
 import com.finco.bank.BankReceiver;
 import com.finco.bank.factory.BankAccountFactory;
 import com.finco.framework.FincoReceiver;
-import com.finco.framework.Framework;
 import com.finco.framework.account.Account;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.factory.AccountFactory;
@@ -44,9 +43,8 @@ public class BankView extends FinCoView {
     public static void main(String[] args) {
         FincoOperationManager fincoOperationManager = new FincoOperationManager();
         FincoReceiver fincoReceiver = new BankReceiver();
-        Framework framework = new Framework(fincoOperationManager, fincoReceiver);
-        AccountService accountService = new AccountServiceImpl(framework);
-        CustomerService customerService = new CustomerServiceImpl(framework);
+        AccountService accountService = new AccountServiceImpl(fincoOperationManager,fincoReceiver);
+        CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
         FinCoView finCoView = new BankView(accountService, customerService);
         fincoReceiver.addObserver(finCoView);
         finCoView.setVisible(true);

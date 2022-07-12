@@ -1,6 +1,6 @@
 package com.finco.framework.service.impl;
 
-import com.finco.framework.Framework;
+import com.finco.framework.FincoReceiver;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.*;
 import com.finco.framework.report.Top10Deposit;
@@ -11,10 +11,13 @@ import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
 
-    private Framework framework;
+    private FincoOperationManager fincoOperationManager;
 
-    public AccountServiceImpl(Framework framework){
-        this.framework = framework;
+    private FincoReceiver fincoReceiver;
+
+    public AccountServiceImpl(FincoOperationManager fincoOperationManager, FincoReceiver fincoReceiver){
+        this.fincoOperationManager = fincoOperationManager;
+        this.fincoReceiver = fincoReceiver;
     }
 
     @Override
@@ -24,40 +27,39 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<IAccount> findAll() {
-        return framework.getFincoReceiver().getAccounts();
+        return fincoReceiver.getAccounts();
     }
 
     public void deposit(Double amount, IAccount account){
-        submitCommand(new Deposit(framework.getFincoReceiver(), amount, account));
+        submitCommand(new Deposit(fincoReceiver, amount, account));
     }
 
     @Override
     public void withdraw(Double amount, IAccount account) {
-        submitCommand(new Withdraw(framework.getFincoReceiver(), amount, account));
+        submitCommand(new Withdraw(fincoReceiver, amount, account));
     }
 
     @Override
     public void addInterest() {
-        submitCommand(new AddInterest(framework.getFincoReceiver()));
+        submitCommand(new AddInterest(fincoReceiver));
     }
 
     @Override
     public void top10DepositReport(String accountNumber) {
-        IAccount account = framework.getFincoReceiver().getAccount(accountNumber);
-        framework.getFincoReceiver().setReport(new Top10Deposit(account));
-        submitCommand(new GenerateReport(framework.getFincoReceiver(), accountNumber, "TOP_10_DEPOSIT"));
+        IAccount account = fincoReceiver.getAccount(accountNumber);
+        fincoReceiver.setReport(new Top10Deposit(account));
+        submitCommand(new GenerateReport(fincoReceiver, accountNumber, "TOP_10_DEPOSIT"));
     }
 
     @Override
     public void top10WithdrawReport(String accountNumber) {
-        IAccount account = framework.getFincoReceiver().getAccount(accountNumber);
-        framework.getFincoReceiver().setReport(new Top10Withdraw(account));
-        submitCommand(new GenerateReport(framework.getFincoReceiver(), accountNumber, "TOP_10_WITHDRAW"));
+        IAccount account = fincoReceiver.getAccount(accountNumber);
+        fincoReceiver.setReport(new Top10Withdraw(account));
+        submitCommand(new GenerateReport(fincoReceiver, accountNumber, "TOP_10_WITHDRAW"));
     }
 
     protected void submitCommand(Command command){
-        FincoOperationManager operationManager = framework.getFincoOperationManager();
-        operationManager.setCommand(command);
-        operationManager.submit();
+        fincoOperationManager.setCommand(command);
+        fincoOperationManager.submit();
     }
 }

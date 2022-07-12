@@ -4,7 +4,6 @@ package com.finco.framework.ui;
 
 import com.finco.framework.observer.Observer;
 import com.finco.framework.FincoReceiver;
-import com.finco.framework.Framework;
 import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.FincoOperationManager;
@@ -47,9 +46,8 @@ public class FinCoView extends JFrame implements Observer {
 	public static void main(String[] args) {
 		FincoOperationManager fincoOperationManager = new FincoOperationManager();
 		FincoReceiver fincoReceiver = new FincoReceiver();
-		Framework framework = new Framework(fincoOperationManager, fincoReceiver);
-		AccountService accountService = new AccountServiceImpl(framework);
-		CustomerService customerService = new CustomerServiceImpl(framework);
+		AccountService accountService = new AccountServiceImpl(fincoOperationManager,fincoReceiver);
+		CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
 		FinCoView finCoView = new FinCoView(accountService, customerService);
 		finCoView.setVisible(true);
 	}
