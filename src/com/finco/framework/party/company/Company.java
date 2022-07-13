@@ -1,12 +1,6 @@
 package com.finco.framework.party.company;
 
-import com.finco.framework.account.IAccount;
 import com.finco.framework.party.Customer;
-import com.finco.framework.party.person.IPerson;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Company extends Customer {
 
@@ -22,6 +16,4 @@ public class Company extends Customer {
     public void sendEmail() {
         System.out.println("Email send to -> " + this.getEmail());
     }
-
-
 }

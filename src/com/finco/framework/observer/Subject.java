@@ -1,7 +1,5 @@
 package com.finco.framework.observer;
 
-import com.finco.framework.observer.Observer;
-
 import java.util.List;
 
 public interface Subject {

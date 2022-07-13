@@ -1,16 +1,12 @@
 package com.finco.ccard.view;
 
-import com.finco.bank.BankReceiver;
 import com.finco.ccard.account.CcardAccount;
 import com.finco.ccard.account.CcardType;
 import com.finco.ccard.account.CreditCardAccountService;
-import com.finco.framework.FincoReceiver;
 import com.finco.framework.account.IAccount;
-import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.party.person.Person;
 import com.finco.framework.service.CustomerService;
-import com.finco.framework.service.impl.CustomerServiceImpl;
 import com.finco.framework.ui.*;
 
 import javax.swing.*;
@@ -74,16 +70,6 @@ public class CcardView extends FinCoView {
 
         table.getSelectionModel().setAnchorSelectionIndex(-1);
         newaccount = false;
-    }
-
-    public static void main(String[] args) {
-        FincoOperationManager fincoOperationManager = new FincoOperationManager();
-        FincoReceiver fincoReceiver = new BankReceiver();
-        CreditCardAccountService accountService = new CreditCardAccountService(fincoOperationManager,fincoReceiver);
-        CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
-        FinCoView finCoView = new CcardView(accountService, customerService);
-        fincoReceiver.addObserver(finCoView);
-        finCoView.setVisible(true);
     }
 
     @Override

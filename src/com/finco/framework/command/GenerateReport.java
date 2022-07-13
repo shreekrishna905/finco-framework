@@ -1,9 +1,6 @@
 package com.finco.framework.command;
 
 import com.finco.framework.FincoReceiver;
-import com.finco.framework.account.Account;
-import com.finco.framework.account.IAccount;
-import com.finco.framework.report.FincoReport;
 
 public class GenerateReport implements Command{
 

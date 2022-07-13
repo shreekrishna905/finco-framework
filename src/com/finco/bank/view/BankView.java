@@ -1,18 +1,13 @@
 package com.finco.bank.view;
 
-import com.finco.bank.BankReceiver;
 import com.finco.bank.factory.BankAccountFactory;
-import com.finco.framework.FincoReceiver;
 import com.finco.framework.account.Account;
-import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.factory.AccountFactory;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.party.company.Company;
 import com.finco.framework.party.person.Person;
 import com.finco.framework.service.AccountService;
 import com.finco.framework.service.CustomerService;
-import com.finco.framework.service.impl.AccountServiceImpl;
-import com.finco.framework.service.impl.CustomerServiceImpl;
 import com.finco.framework.ui.FinCoView;
 import com.finco.framework.ui.JDialogGenReport;
 import com.finco.framework.ui.JDialog_AddCompAcc;
@@ -38,16 +33,6 @@ public class BankView extends FinCoView {
     @Override
     protected JDialog_AddPAcc getAddPersonJDialog() {
         return new AddPersonBankView(this);
-    }
-
-    public static void main(String[] args) {
-        FincoOperationManager fincoOperationManager = new FincoOperationManager();
-        FincoReceiver fincoReceiver = new BankReceiver();
-        AccountService accountService = new AccountServiceImpl(fincoOperationManager,fincoReceiver);
-        CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
-        FinCoView finCoView = new BankView(accountService, customerService);
-        fincoReceiver.addObserver(finCoView);
-        finCoView.setVisible(true);
     }
 
     @Override

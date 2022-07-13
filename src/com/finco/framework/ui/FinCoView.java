@@ -340,9 +340,6 @@ public class FinCoView extends JFrame implements Observer {
 
 			accountService.deposit(deposit, acc);
 			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
-		} else {
-			JOptionPane.showMessageDialog(JButton_Addinterest, "Please first select an account to deposit to.",
-					"Deposit", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
@@ -366,14 +363,12 @@ public class FinCoView extends JFrame implements Observer {
 
 			accountService.withdraw(withdrawAmount, acc);
 			model.setValueAt(String.valueOf(acc.getCurrentBalance()), selection, 4);
-		} else {
-
 		}
 	}
 
 	void JButtonAddinterest_actionPerformed(ActionEvent event) {
-		if (JOptionPane.showConfirmDialog(JButton_Addinterest, "Add interest to accounts",
-				"Add interest", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+		if (JOptionPane.showConfirmDialog(JButton_Addinterest, "Do you want add interest to all account ?",
+				"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
 			accountService.addInterest();
 			loadAccountData(accountService.findAll(), model, JTable1);
 		}
