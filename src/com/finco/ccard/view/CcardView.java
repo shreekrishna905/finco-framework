@@ -24,9 +24,10 @@ public class CcardView extends FinCoView {
         super(accountService, customerService);
         this.creditCardAccountService = accountService;
         setSize(650, 400);
-        setTitle("Credit Card Application");
         JButton_Withdraw.setText("Charge");
         JButton_Deposit.setText("Pay");
+        setTitle("Credit Card Application");
+
     }
 
     protected String creditCardType;
