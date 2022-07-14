@@ -1,16 +1,16 @@
 package com.finco.framework.command;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 
 public class GenerateReport implements Command{
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
     private String accountNumber;
 
     private String type;
 
-    public GenerateReport(FincoReceiver fincoReceiver, String accountNumber, String type){
+    public GenerateReport(FincoManager fincoReceiver, String accountNumber, String type){
         this.fincoReceiver = fincoReceiver;
         this.accountNumber = accountNumber;
         this.type=type;

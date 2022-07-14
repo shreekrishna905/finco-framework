@@ -1,8 +1,7 @@
 package com.finco.framework.command;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.account.Account;
-import com.finco.framework.account.IAccount;
 import com.finco.framework.party.ICustomer;
 
 public class CreateAccount implements Command {
@@ -11,9 +10,9 @@ public class CreateAccount implements Command {
 
     private ICustomer customer;
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
-    public CreateAccount(FincoReceiver fincoReceiver, Account account, ICustomer iCustomer){
+    public CreateAccount(FincoManager fincoReceiver, Account account, ICustomer iCustomer){
         this.fincoReceiver = fincoReceiver;
         this.account = account;
         this.customer = iCustomer;

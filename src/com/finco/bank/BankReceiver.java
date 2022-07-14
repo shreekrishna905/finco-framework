@@ -1,6 +1,6 @@
 package com.finco.bank;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.account.entry.DepositeEntry;
 import com.finco.framework.account.entry.Entry;
@@ -9,7 +9,7 @@ import com.finco.framework.party.ICustomer;
 
 import java.time.LocalDate;
 
-public class BankReceiver extends FincoReceiver {
+public class BankReceiver extends FincoManager {
 
     public void deposit(Double amount, IAccount account){
         Entry entry = new DepositeEntry(LocalDate.now(), amount, "DEPOSIT");

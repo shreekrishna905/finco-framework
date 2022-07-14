@@ -1,6 +1,6 @@
 package com.finco.framework.service.impl;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.account.Account;
 import com.finco.framework.command.CreateAccount;
 import com.finco.framework.command.FincoOperationManager;
@@ -11,9 +11,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     private FincoOperationManager fincoOperationManager;
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
-    public CustomerServiceImpl(FincoOperationManager fincoOperationManager, FincoReceiver fincoReceiver){
+    public CustomerServiceImpl(FincoOperationManager fincoOperationManager, FincoManager fincoReceiver){
         this.fincoOperationManager = fincoOperationManager;
         this.fincoReceiver = fincoReceiver;
     }

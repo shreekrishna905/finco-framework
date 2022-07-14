@@ -1,12 +1,12 @@
 package com.finco.framework.command;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 
 public class AddInterest implements Command{
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
-    public AddInterest(FincoReceiver fincoReceiver){
+    public AddInterest(FincoManager fincoReceiver){
         this.fincoReceiver = fincoReceiver;
     }
 

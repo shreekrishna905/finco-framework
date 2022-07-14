@@ -9,20 +9,19 @@ import com.finco.framework.observer.Observer;
 import com.finco.framework.observer.Subject;
 import com.finco.framework.party.ICustomer;
 import com.finco.framework.report.FincoReport;
-import com.finco.framework.utils.EmailSender;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FincoReceiver implements Subject {
+public class FincoManager implements Subject {
 
     List<ICustomer> customers;
     List<IAccount> accounts;
     List<Observer> observers;
     private FincoReport fincoReport;
 
-    public FincoReceiver(){
+    public FincoManager(){
         this.customers = new ArrayList<>();
         this.accounts = new ArrayList<>();
         this.observers = new ArrayList<>();

@@ -1,6 +1,6 @@
 package com.finco.framework.service.impl;
 
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.*;
 import com.finco.framework.report.Top10Deposit;
@@ -13,9 +13,9 @@ public class AccountServiceImpl implements AccountService {
 
     private FincoOperationManager fincoOperationManager;
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
-    public AccountServiceImpl(FincoOperationManager fincoOperationManager, FincoReceiver fincoReceiver){
+    public AccountServiceImpl(FincoOperationManager fincoOperationManager, FincoManager fincoReceiver){
         this.fincoOperationManager = fincoOperationManager;
         this.fincoReceiver = fincoReceiver;
     }

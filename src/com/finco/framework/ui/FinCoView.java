@@ -3,7 +3,7 @@ package com.finco.framework.ui;
 
 
 import com.finco.framework.observer.Observer;
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.account.Account;
 import com.finco.framework.account.IAccount;
 import com.finco.framework.command.FincoOperationManager;
@@ -43,21 +43,12 @@ public class FinCoView extends JFrame implements Observer {
 
 	protected CustomerService customerService;
 
-	public static void main(String[] args) {
-		FincoOperationManager fincoOperationManager = new FincoOperationManager();
-		FincoReceiver fincoReceiver = new FincoReceiver();
-		AccountService accountService = new AccountServiceImpl(fincoOperationManager,fincoReceiver);
-		CustomerService customerService = new CustomerServiceImpl(fincoOperationManager,fincoReceiver);
-		FinCoView finCoView = new FinCoView(accountService, customerService);
-		finCoView.setVisible(true);
-	}
-
 	public FinCoView(AccountService accountService, CustomerService customerService) {
 		myframe = this;
 		this.accountService = accountService;
 		this.customerService = customerService;
 
-		setTitle("Banking Application");
+		setTitle("Finco Application");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setSize(600, 310);

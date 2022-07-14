@@ -1,16 +1,16 @@
 package com.finco.ccard.account;
 
 import com.finco.ccard.report.CcardReport;
-import com.finco.framework.FincoReceiver;
+import com.finco.framework.FincoManager;
 import com.finco.framework.command.FincoOperationManager;
 import com.finco.framework.command.GenerateReport;
 import com.finco.framework.service.impl.AccountServiceImpl;
 
 public class CreditCardAccountService extends AccountServiceImpl {
 
-    private FincoReceiver fincoReceiver;
+    private FincoManager fincoReceiver;
 
-    public CreditCardAccountService(FincoOperationManager fincoOperationManager, FincoReceiver fincoReceiver) {
+    public CreditCardAccountService(FincoOperationManager fincoOperationManager, FincoManager fincoReceiver) {
         super(fincoOperationManager,fincoReceiver);
         this.fincoReceiver = fincoReceiver;
     }
